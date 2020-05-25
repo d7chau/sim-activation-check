@@ -29,14 +29,19 @@ def unactivated_check():
     hideinactiveclients_location = pyautogui.locateOnScreen('imgs/hideinactiveclients.png', grayscale=True, confidence=0.7) #Uses screenshot to detect btn
     pyautogui.click(hideinactiveclients_location) #Turning 'Hide Inactive Clients' off
     time.sleep(1)
-    cximg_location = pyautogui.locateOnScreen('imgs/cximg.png', grayscale=True, confidence=0.7) #Uses screenshot to detect btn
+    cximg_location = pyautogui.locateOnScreen('imgs/cximg.png', grayscale=True, confidence=0.7) 
     pyautogui.click(cximg_location) #Clicking Cx name
     time.sleep(3)
-    loginasclient_location = pyautogui.locateOnScreen('imgs/loginasclient.png', grayscale=True, confidence=0.7) #Uses screenshot to detect btn
+    loginasclient_location = pyautogui.locateOnScreen('imgs/loginasclient.png', grayscale=True, confidence=0.7) 
     pyautogui.click(loginasclient_location) #Clicking 'Login as Client'
-    time.sleep(3)
+    time.sleep(2)
+    wirelessplan_location = pyautogui.locateOnScreen('imgs/wirelessplan.png', grayscale=True, confidence=0.7) 
+    pyautogui.click(wirelessplan_location) 
+    time.sleep(6)
 
 def activated_confirmed():
+        pyautogui.hotkey('alt', 'left')
+        time.sleep(1)
         pyautogui.hotkey('alt', 'left')
         time.sleep(3)
         pyautogui.hotkey('ctrl', 'tab') #Go back to WirelessSIMLog
@@ -44,26 +49,32 @@ def activated_confirmed():
         pyautogui.press('right', presses=6, interval=0.25)  
         pyautogui.write('ACTIVATED')
 
+def unactivated_confirmed():
+        pyautogui.hotkey('alt', 'left')
+        time.sleep(1)
+        pyautogui.hotkey('alt', 'left')
+        time.sleep(3)
+        pyautogui.hotkey('ctrl', 'tab') #Go back to WirelessSIMLog
+        time.sleep(1)
+        pyautogui.press('right', presses=6, interval=0.25)  
+        pyautogui.write('UNACTIVATED')
+
 def main():
     urls = ["https://shop.fongowireless.com/wirelessadmin/index.php", "https://docs.google.com/spreadsheets/d/1ZFn_k_oDB5vqmOTVyb2MnIMkWTzAm0KtXpg9jPPIYsM/edit#gid=0"]
     urls_open(urls)
     unactivated_check()
     try:
-        sim2gb_location = pyautogui.locateOnScreen('imgs/sim2gb.png', grayscale=True, confidence=0.99)
-        sim5gb_location = pyautogui.locateOnScreen('imgs/sim5gb.png', grayscale=True, confidence=0.99)
-        
-        if sim5gb_location is not None and sim2gb_location is not None: #2GB and 5GB detected
+        activatedscreen_location = pyautogui.locateOnScreen('imgs/activatedscreen.png', grayscale=True, confidence=0.7)
+        unactivatedscreen_location = pyautogui.locateOnScreen('imgs/unactivatedscreen.png', grayscale=True, confidence=0.7)
+
+        if activatedscreen_location is not None: #ACTIVATED
             activated_confirmed()
-            print("2GB and 5GB detected")
+            print("activated")
 
-        elif sim2gb_location is not None:  #2GB SIM detected
-            activated_confirmed()
-            print("2GB detected")
-
-        elif sim5gb_location is not None: #5GB SIM detected
-            activated_confirmed()    
-            print("5GB detected")      
-
+        elif unactivatedscreen_location is not None: #UNACTIVATED
+            unactivated_confirmed()    
+            print("unactivated")
+            
         else:
             print("None were found")
 
