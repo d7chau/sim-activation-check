@@ -3,6 +3,8 @@ import webbrowser
 import time
 from pyautogui import ImageNotFoundException
 
+pyautogui.FAILSAFE = True #moving mouse to top left corner of screen aborts program
+
 def urls_open (urls):
     for i in range(0,len(urls)):
         if i == 0:
@@ -17,7 +19,7 @@ def account_search():
     time.sleep(15)
     pyautogui.hotkey('ctrl', 'f') 
     pyautogui.write('Below Requires FOLLOW UP')
-    time.sleep(1)
+    time.sleep(2)
     pyautogui.press('esc')
     time.sleep(2)
     pyautogui.press('down')
