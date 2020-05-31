@@ -10,11 +10,9 @@ def urls_open(urls):
     for i in range(0,len(urls)):
         if i == 0:
             webbrowser.open(urls[i], autoraise=True) #Opens first URL in focus
-            print("first url")
             time.sleep(2)
         else:
             webbrowser.open(urls[i]) 
-            print("second url")
 
 def email_exists():
     pyautogui.press('down')
@@ -33,33 +31,43 @@ def email_exists():
         return False
 
 def account_search():
+    print("Entered account search")
     pyautogui.hotkey('ctrl', 'tab') 
     time.sleep(1)
     pyautogui.click(1507,166) #Clicking WHMCS search bar
+    time.sleep(1)
+    pyautogui.hotkey('ctrl', 'a') 
+    time.sleep(1)
+    pyautogui.press('del') 
+    time.sleep(1)
     pyautogui.hotkey('ctrl', 'v')    
     time.sleep(2)
-    hideinactiveclients_location = pyautogui.locateOnScreen('imgs/hideinactiveclients.png', grayscale=True, confidence=0.7) 
+    hideinactiveclients_location = pyautogui.locateOnScreen('imgs/hideinactiveclients.png', grayscale=True, confidence=0.99) 
     pyautogui.click(hideinactiveclients_location) #Turning 'Hide Inactive Clients' off
     time.sleep(1)
     cximg_location = pyautogui.locateOnScreen('imgs/cximg.png', grayscale=True, confidence=0.7) 
-    pyautogui.click(cximg_location) #Clicking Cx name
-    time.sleep(3)
-    loginasclient_location = pyautogui.locateOnScreen('imgs/loginasclient.png', grayscale=True, confidence=0.7) 
-    pyautogui.click(loginasclient_location) #Clicking 'Login as Client'
     time.sleep(2)
-    wirelessplan_location = pyautogui.locateOnScreen('imgs/wirelessplan.png', grayscale=True, confidence=0.7) 
-    pyautogui.click(wirelessplan_location) 
-    time.sleep(8)
 
-def activated_confirmed():
-        pyautogui.hotkey('alt', 'left')
+    if cximg_location is not None:
+        pyautogui.click(cximg_location) #Clicking Cx name
         time.sleep(3)
-        pyautogui.hotkey('alt', 'left')
-        time.sleep(3)
+        loginasclient_location = pyautogui.locateOnScreen('imgs/loginasclient.png', grayscale=True, confidence=0.7) 
+        pyautogui.click(loginasclient_location) #Clicking 'Login as Client'
+        time.sleep(2)
+        wirelessplan_location = pyautogui.locateOnScreen('imgs/wirelessplan.png', grayscale=True, confidence=0.7) 
+        pyautogui.click(wirelessplan_location) 
+        time.sleep(8)
+        return True
+
+    else: #If account not found
+        account_not_found()
+        return False
+
+def account_not_found():
         pyautogui.hotkey('ctrl', 'tab') 
         time.sleep(1)
         pyautogui.press('right', presses=6, interval=0.25)  
-        pyautogui.write('ACTIVATED')
+        pyautogui.typewrite('N/A')        
 
 def unactivated_confirmed():
         pyautogui.hotkey('alt', 'left')
@@ -68,8 +76,18 @@ def unactivated_confirmed():
         time.sleep(3)
         pyautogui.hotkey('ctrl', 'tab') 
         time.sleep(1)
-        pyautogui.press('right', presses=6, interval=0.25)  
-        pyautogui.write('UNACTIVATED')
+        pyautogui.press('right', presses=6, interval=0.25)
+        pyautogui.typewrite('UNACTIVATED')
+
+def activated_confirmed():
+        pyautogui.hotkey('alt', 'left')
+        time.sleep(3)
+        pyautogui.hotkey('alt', 'left')
+        time.sleep(3)
+        pyautogui.hotkey('ctrl', 'tab') 
+        time.sleep(1)
+        pyautogui.press('right', presses=6, interval=0.25)   
+        pyautogui.typewrite('ACTIVATED') 
 
 def terminated_confirmed():
         pyautogui.hotkey('alt', 'left')
@@ -77,10 +95,10 @@ def terminated_confirmed():
         pyautogui.hotkey('ctrl', 'tab') 
         time.sleep(1)
         pyautogui.press('right', presses=6, interval=0.25)  
-        pyautogui.write('TERMINATED')
+        pyautogui.typewrite('TERMINATED')
 
 def main():
-    urls = ["https://shop.fongowireless.com/wirelessadmin/index.php", "https://docs.google.com/spreadsheets/d/1XzngtTaRWeXNDgMWxpupXd0rOtKg4sM17lynj0q5VZw/edit#gid=0"]
+    urls = ["https://shop.fongowireless.com/wirelessadmin/index.php", "https://docs.google.com/spreadsheets/d/1GyzBpWz3BUVpsmVHvA2WpC9z_AGyh4FlFMFP1ynVzaI/edit#gid=0"]
     urls_open(urls)
     time.sleep(15)
     pyautogui.hotkey('ctrl', 'f') 
@@ -92,25 +110,22 @@ def main():
 
     while True:
         try:
-            if email_exists() == False: # If no email is detected, end program
+            if email_exists() == False: #If no email is detected, end program
                 pyautogui.alert('Program Complete \n(no email detected)')
                 break
 
-            account_search()
-            
-            activatedscreen_location = pyautogui.locateOnScreen('imgs/activatedscreen.png', grayscale=True, confidence=0.7)
-            unactivatedscreen_location = pyautogui.locateOnScreen('imgs/unactivatedscreen.png', grayscale=True, confidence=0.7)
+            if account_search() == True: #If account is found...
+                activatedscreen_location = pyautogui.locateOnScreen('imgs/activatedscreen.png', grayscale=True, confidence=0.7)
+                unactivatedscreen_location = pyautogui.locateOnScreen('imgs/unactivatedscreen.png', grayscale=True, confidence=0.7)
 
-            if activatedscreen_location is not None: #ACTIVATED
-                activated_confirmed()
-                print("activated")
+                if activatedscreen_location is not None: #ACTIVATED
+                    activated_confirmed()
 
-            elif unactivatedscreen_location is not None: #UNACTIVATED
-                unactivated_confirmed()    
-                print("unactivated")
-                
-            else: #TERMINATED
-                terminated_confirmed()
+                elif unactivatedscreen_location is not None: #UNACTIVATED
+                    unactivated_confirmed()    
+                    
+                else: #TERMINATED
+                    terminated_confirmed() 
                 
         except ImageNotFoundException: #In case error crashes program
             pyautogui.alert('Error:ImageNotFoundException')
