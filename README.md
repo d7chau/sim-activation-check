@@ -10,12 +10,12 @@ To run the program, right click on the .exe file and Run as Administrator (if a 
 
 ### Prerequisites
 
--Windows System
--Google Chrome
--Signed into your Google account (have access to WirelessSIMLog spreadsheet)
--Signed into WHMCS
--No windows or tabs should be open
--1680x1050 resolution size (support for more resolution sizes can be implemented in the future)
+* Windows System
+* Google Chrome
+* Signed into your Google account (have access to WirelessSIMLog spreadsheet)
+* Signed into WHMCS
+* No windows or tabs should be open
+* 1680x1050 resolution size (support for more resolution sizes can be implemented in the future)
 
 ## Built With
 
@@ -26,9 +26,9 @@ To run the program, right click on the .exe file and Run as Administrator (if a 
 ## Future Implementations
 
 Screen Resolution: 
--Take the same screenshots as the ones found in the imgs folder of this repository
--Add new screenshots to imgs folder
--Create new variables for each screenshot (newscreenshot_location = pyautogui.locateOnScreen('imgs/newscreenshot.png'))
+* Take the same screenshots as the ones found in the imgs folder of this repository
+* Add new screenshots to imgs folder
+* Create new variables for each screenshot (newscreenshot_location = pyautogui.locateOnScreen('imgs/newscreenshot.png'))
 
 ## Versioning
 
