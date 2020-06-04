@@ -24,14 +24,11 @@ def email_exists():
     clipboard_text = pyperclip.paste() #Finds what copied in the clipboard
 
     if clipboard_text != "" and clipboard_text != "\r\n": #\r\n is blank
-        print("clipboard text detected")
         return True
     else:
-        print("clipboard text not detected")
         return False
 
 def account_search():
-    print("Entered account search")
     pyautogui.hotkey('ctrl', 'tab') 
     time.sleep(1)
     pyautogui.click(1507,166) #Clicking WHMCS search bar
