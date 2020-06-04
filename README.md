@@ -1,4 +1,4 @@
-[![](https://github.com/d7chau/SIM-Activation-Check/blob/master/imgs/SIMActivationCheckLogo.png)](https://github.com/d7chau/SIM-Activation-Check)
+[![](https://github.com/d7chau/SIM-Activation-Check/blob/master/imgs/SIMActivationCheckLogo1.png)](https://github.com/d7chau/SIM-Activation-Check)
 
 # Introduction to SIM Activation Check
 
