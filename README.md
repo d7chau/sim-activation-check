@@ -23,6 +23,11 @@ To run the program, right click on the .exe file and Run as Administrator (if a 
 * [OpenCV](https://opencv.org/) - Detecting accuracy (confidence level) of screenshots
 * [PyInstaller](https://www.pyinstaller.org/) - Running Python files without Python needing to be downloaded
 
+## Features
+
+Fail-Safe:
+* Move mouse to top left corner of screen to abort and stop the program
+
 ## Future Implementations
 
 Screen Resolution: 
