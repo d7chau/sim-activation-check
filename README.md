@@ -8,6 +8,14 @@ Program used for checking the status of SIM cards (unactivated, activated, termi
 
 To run the program, right click on the `.exe` file and Run as Administrator (if a popup appears, click Run Anyways).
 
+### Generating executable
+
+Executables are available on the releases page, however you can also generate them via the following steps:
+
+* `pip install pyinstaller`
+* `pyinstaller -w -F SIM-Activation-Check.py`
+* Check locally generated `dist` folder for executable
+
 ### Prerequisites
 
 * Windows System
@@ -37,7 +45,7 @@ Multiple Screen Resolution Support:
 
 ## Versioning
 
-Github was used for version control. For the versions available, see the [commits on this repository](https://github.com/d7chau/SIM-Activation-Check/releases). 
+Github was used for version control. For the versions available, see the [releases page on this repository](https://github.com/d7chau/SIM-Activation-Check/releases). 
 
 ## Authors
 
