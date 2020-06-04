@@ -8,7 +8,7 @@ Program used for checking the status of SIM cards (unactivated, activated, termi
 
 To run the program, right click on the `.exe` file and Run as Administrator (if a popup appears, click Run Anyways).
 
-### Generating executable
+### Generating Executable
 
 Executables are available on the releases page, however you can also generate them via the following steps:
 
