@@ -95,12 +95,12 @@ def terminated_confirmed():
         pyautogui.typewrite('TERMINATED')
 
 def main():
-    urls = ["https://shop.fongowireless.com/wirelessadmin/index.php", "https://docs.google.com/spreadsheets/d/1GyzBpWz3BUVpsmVHvA2WpC9z_AGyh4FlFMFP1ynVzaI/edit#gid=0"]
+    urls = ["https://shop.fongowireless.com/wirelessadmin/index.php", "https://docs.google.com/spreadsheets/u/2/d/1XzngtTaRWeXNDgMWxpupXd0rOtKg4sM17lynj0q5VZw/edit#gid=0"]
     urls_open(urls)
-    time.sleep(15)
+    time.sleep(17)
     pyautogui.hotkey('ctrl', 'f') 
     pyautogui.write('Below Requires FOLLOW UP')
-    time.sleep(2)
+    time.sleep(4)
     pyautogui.press('esc')
     time.sleep(1)
     pyautogui.press('left')
